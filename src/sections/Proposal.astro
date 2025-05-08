@@ -1,0 +1,422 @@
+---
+---
+
+<section class="proposal-section" id="proposal">
+    <div class="our-proposal-content">
+        <div class="our-proposal-text">
+            <h1 class="typing-title">Nuestra Propuesta.</h1>
+            <h2>Integra la tecnología en tus cultivos</h2>
+            <p>
+                En Nutricontrol, unimos tecnología y agricultura para ofrecerte un sistema inteligente que
+                monitorea, automatiza y mejora cada etapa del cultivo. Controla el riego, la nutrición y el
+                clima desde un solo lugar, con eficiencia y sostenibilidad.
+            </p>
+        </div>
+        <div class="our-proposal-image">
+            <img src="/proposal-section/about-nutricontrol.png" alt="Propuesta de Nutricontrol" />
+        </div>
+    </div>
+    <div class="proposal-content">
+        <h1>Un paso más allá para tus cultivos</h1>
+        <p>
+            Transformamos la forma en que gestionas la nutrición de tus cultivos, con funcionalidades inteligentes, monitoreo en tiempo real y decisiones basadas en datos. Más eficiencia, menos desperdicio, mejores resultados.
+        </p>
+    </div>
+    <div class="features-content">
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-01.png');">
+                    <div class="feature-hover-text">Un buen comienzo garantiza una gran cosecha</div>
+                </div>
+                <h2>Conteo de Cultivos</h2>
+                <p>Registra la cantidad real de plantas por Campos Agrícolas</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-02.png');">
+                    <div class="feature-hover-text">Aplica nutrientes con precisión según el cultivo</div>
+                </div>
+                <h2>Gestión de Fertirrigación</h2>
+                <p>Aplica nutrientes con precisión según el cultivo</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-03.png');">
+                    <div class="feature-hover-text">Controla el microclima de tu cultivo</div>
+                </div>
+                <h2>Control del Clima</h2>
+                <p>Registra la cantidad real de plantas por Campos Agrícolas</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-04.png');">
+                    <div class="feature-hover-text">Todo lo que aplicas, bajo control</div>
+                </div>
+                <h2>Control de Aplicaciones</h2>
+                <p>Lleva el registro de todo lo que aplicas en campo</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-05.png');">
+                    <div class="feature-hover-text">Actúa rápido ante cualquier falla</div>
+                </div>
+                <h2>Alarmas y Notificaciones</h2>
+                <p>Actúa rápido ante cualquier falla en tu sistema</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-image" style="background-image: url('/features/feature-06.png');">
+                    <div class="feature-hover-text">Conecta sensores y toma mejores decisiones</div>
+                </div>
+                <h2>Integración con Sensores</h2>
+                <p>Conecta sensores y actuadores para mejores decisiones</p>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const typingTitle = document.querySelector('.typing-title');
+        const items = document.querySelectorAll(".feature-item, .our-proposal-image");
+
+        // Configura el Intersection Observer para la animación de los elementos generales
+        const generalObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add("show");
+                    }, index * 250);
+                    generalObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        items.forEach(item => generalObserver.observe(item));
+
+        // Configura el Intersection Observer para el título de escritura
+        const typingObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Solo añade la clase si aún no tiene la animación
+                    if (!typingTitle.classList.contains('animate')) {
+                        typingTitle.classList.add('animate');
+                    }
+                    observer.disconnect(); // Detén la observación después de que la animación se activa
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        typingObserver.observe(typingTitle);
+    });
+
+
+</script>
+
+
+<style>
+    .typing-title {
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        .typing-title.animate {
+            animation: typing 1.5s steps(16, end) forwards, blink 0.45s step-end infinite;
+            white-space: nowrap;
+            border-right: 3px solid #014728;
+        }
+    }
+
+    @keyframes typing {
+        from { width: 0ch; }
+        to { width: 16ch; }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent; }
+    }
+
+
+
+    @keyframes zoomInFadeSmooth {
+        0% {
+            opacity: 0;
+            transform: scale(0.75);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .our-proposal-image {
+        opacity: 0;
+        transform: scale(0.75);
+        transition: none;
+    }
+
+    .our-proposal-image.show {
+        animation: zoomInFadeSmooth 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+
+
+
+
+    h1{
+        color: #014728;
+        font-size: 40px;
+    }
+    h2{
+        font-size: 24px;
+    }
+    p{
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 300px) {
+        h1 {
+            font-size: 24px!important;
+        }
+        p {
+            font-size: 14px!important;
+        }
+    }
+
+    .proposal-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        scroll-margin-top: 50px;
+    }
+
+    .our-proposal-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 80px;
+        gap: 60px;
+    }
+
+    .our-proposal-text,
+    .our-proposal-image {
+        flex: 1 1 50%;
+    }
+
+    .our-proposal-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .our-proposal-content p{
+        text-align: justify;
+        max-width: 470px;
+    }
+
+    .proposal-content{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        max-width: 1300px;
+        padding: 0px 80px 50px 80px;
+    }
+    .proposal-content p{
+        width: 80%;
+    }
+
+
+    .features-content{
+        background: linear-gradient(to bottom,
+        #ffffff 0%,
+        #ffffff 15%,
+        #014728 15%,
+        #014728 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding-bottom: 80px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 70px;
+        max-width: 1300px;
+    }
+
+    @media (max-width: 1180px) {
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .features-content{
+            background: linear-gradient(to bottom,
+            #ffffff 0%,
+            #ffffff 10%,
+            #014728 10%,
+            #014728 100%);
+        }
+
+    }
+
+    @media (max-width: 800px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        .features-content{
+            background: linear-gradient(to bottom,
+            #ffffff 0%,
+            #ffffff 5%,
+            #014728 5%,
+            #014728 100%);
+        }
+    }
+
+
+    .feature-item {
+        text-align: center;
+        max-width: 320px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(30px);
+    }
+    .feature-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .feature-image {
+        width: 320px;
+        height: 320px;
+        margin: 0 auto 15px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    /* Capa para oscurecer solo la imagen de fondo */
+    .feature-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* más opaco para que se note */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+    }
+
+    /* Mostrar la opacidad sobre la imagen al hacer hover */
+    .feature-image:hover::before {
+        opacity: 1;
+    }
+
+    .feature-hover-text {
+        position: absolute;
+        inset: 0;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        padding: 10px;
+        text-align: center;
+        transition: opacity 0.3s ease;
+        z-index: 1; /* Encima del fondo oscuro */
+    }
+
+    /* Mostrar el texto al hacer hover */
+    .feature-image:hover .feature-hover-text {
+        opacity: 1;
+    }
+
+    @media (max-width: 500px) {
+        .feature-item {
+            max-width: 250px;
+        }
+
+        .feature-image {
+            width: 250px;
+            height: 250px;
+        }
+
+        .features-content{
+            background: linear-gradient(to bottom,
+            #ffffff 0%,
+            #ffffff 3%,
+            #014728 3%,
+            #014728 100%);
+        }
+    }
+
+    @media (max-width: 320px) {
+        .feature-item {
+            max-width: 190px;
+
+
+        }
+
+        .feature-image {
+            width: 190px;
+            height: 190px;
+
+
+        }
+    }
+
+
+    @media screen and (max-width: 968px) {
+        .our-proposal-content{
+            flex-direction: column;
+            gap: 40px;
+        }
+        .our-proposal-text,
+        .our-proposal-image {
+            flex: 1 1 100%;
+        }
+
+        .our-proposal-content p{
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 520px) {
+        h1{
+            font-size: 30px;
+        }
+        h2{
+            font-size: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+        .our-proposal-content{
+            padding: 80px 20px;
+        }
+        .proposal-content{
+            padding: 0px 20px 80px 20px;
+        }
+        .proposal-content p{
+            width: 100%;
+        }
+    }
+
+
+
+
+</style>

@@ -1,0 +1,284 @@
+---
+
+---
+<section class="about-us" id="about-us">
+    <div class="about-us-content">
+        <div class="about-us-text">
+            <h1 class="typing-title-2">Sobre Nosotros</h1>
+            <p>Misión y visión de la familia AgroSense</p>
+        </div>
+    </div>
+    <div class="about-us-text-one">
+        <div class="about-us-text-container">
+            <div class="about-image animate-fade">
+                <img src="/about-us/what-is-agrosense.png" alt="Propuesta de Nutricontrol" />
+            </div>
+            <div class="about-text animate-up">
+                <h1>¿Cómo nace AgroSense?</h1>
+                <h2>Tecnología que cultiva resultados</h2>
+                <p>
+                    AgroSense nace para revolucionar la agricultura, integrando tecnología que optimiza el cultivo con decisiones basadas en datos, eficiencia y sostenibilidad.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="about-us-text-two">
+        <div class="about-us-text-container">
+            <div class="about-text animate-fade">
+                <h1>Misión y Visión.</h1>
+                <h2>Cultivamos innovación con propósito</h2>
+                <p>
+                    En AgroSense, buscamos transformar la agricultura con tecnología accesible, inteligente y sostenible. Nuestra meta es liderar un cambio global hacia cultivos más eficientes, conectados y respetuosos con el medio ambiente.                </p>
+            </div>
+            <div class="about-image animate-up">
+                <img src="/about-us/our-mission.png" alt="Propuesta de Nutricontrol" />
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const typingTitles = document.querySelectorAll('.typing-title-2');
+        const animatedElements = document.querySelectorAll('.animate-fade, .animate-up');
+
+        // Mostrar elementos animados en orden según su posición
+        const animatedObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 400); // Escalonado
+                    animatedObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.4
+        });
+
+        animatedElements.forEach(el => animatedObserver.observe(el));
+
+        // Animación typing para títulos
+        typingTitles.forEach(title => {
+            const typingObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !title.classList.contains('animate')) {
+                        title.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            typingObserver.observe(title);
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const typingTitle = document.querySelector('.typing-title-2');
+        const items = document.querySelectorAll(".feature-item, .our-proposal-image");
+
+        // Configura el Intersection Observer para la animación de los elementos generales
+        const generalObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add("show");
+                    }, index * 250);
+                    generalObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        items.forEach(item => generalObserver.observe(item));
+
+        // Configura el Intersection Observer para el título de escritura
+        const typingObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Solo añade la clase si aún no tiene la animación
+                    if (!typingTitle.classList.contains('animate')) {
+                        typingTitle.classList.add('animate');
+                    }
+                    observer.disconnect(); // Detén la observación después de que la animación se activa
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        typingObserver.observe(typingTitle);
+    });
+
+
+</script>
+<style>
+
+    .animate-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .animate-fade {
+        opacity: 0;
+        transform: scale(0.98);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-fade.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+
+    .typing-title-2 {
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        .typing-title-2.animate {
+            animation: typing-2 1.5s steps(16, end) forwards, blink 0.45s step-end infinite;
+            white-space: nowrap;
+            border-right: 3px solid #fff;
+        }
+    }
+
+    @keyframes typing-2 {
+        from { width: 0ch; }
+        to { width: 13ch; }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent; }
+    }
+
+
+    .separator {
+        width: 200px;
+        height: 4px;
+        background-color: #907427;
+        margin: 15px auto;
+        border-radius: 5px;
+    }
+
+    h1{
+        font-size: 40px;
+        margin-top: 0px;
+    }
+    p{
+        margin-top: 0px;
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 300px) {
+        h1 {
+            font-size: 24px!important;
+        }
+        p {
+            font-size: 14px!important;
+        }
+    }
+
+    .about-us {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        scroll-margin-top: 60px;
+    }
+
+    .about-us-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #907427;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+
+    .about-us-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1300px;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+
+    .about-us-text-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 80px;
+        gap: 60px;
+    }
+    @media screen and (max-width: 969px) {
+        .about-us-text-container{
+            flex-direction: column;
+            gap: 40px;
+        }
+        .about-image,
+        .about-text {
+            flex: 1 1 100%;
+        }
+
+        .about-text p{
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 520px) {
+        h1{
+            font-size: 30px;
+        }
+        h2{
+            font-size: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+        .about-us-text-container{
+            padding: 80px 20px;
+        }
+        .about-text{
+            padding: 0px;
+        }
+    }
+
+
+    .about-image,
+    .about-text {
+        flex: 1 1 50%;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .about-text h1{
+        color: #014728;
+    }
+
+    .about-text p{
+        text-align: justify;
+        max-width: 470px;
+    }
+
+</style>

@@ -1,0 +1,181 @@
+---
+const navItems = [
+    { label: 'Propuesta', href: '#proposal' },
+    { label: 'Sobre Nosotros', href: '#about-us' },
+    { label: 'Funcionamiento', href: '#functionalities' },
+    { label: 'Membresías', href: '#memberships' },
+];
+---
+
+<header class="toolbar">
+    <div class="toolbar-content">
+        <a href="#" class="logo">
+            <img src="/logo/nutricontrol-logo-01.png" alt="Nutri Control Logo"  />
+        </a>
+
+        <nav class="nav desktop-nav">
+            {navItems.map((item) => (
+                    <a href={item.href}>{item.label}</a>
+            ))}
+            <a href="#" class="start-button">Empezar</a>
+        </nav>
+
+        <div class="burger" id="burger">
+            &#9776;
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        {navItems.map((item) => (
+                <a href={item.href} onclick="document.getElementById('mobileMenu').classList.remove('open')">{item.label}</a>
+        ))}
+        <a href="#" class="start-button">Empezar</a>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const desktopNav = document.querySelector('.desktop-nav');
+
+        // Manejador para abrir y cerrar el menú móvil
+        burger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Cerrar el menú cuando se haga clic en un enlace
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Manejar el cambio de tamaño de la ventana
+        window.addEventListener('resize', () => {
+            // Si la pantalla es más grande que 1080px, cierra el menú móvil
+            if (window.innerWidth > 1080) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+    });
+</script>
+
+
+
+<style>
+    .toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background-color: white;
+        border-bottom: 2px solid #014728;
+    }
+
+
+    .toolbar-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo{
+        transition: transform 0.3s ease;
+    }
+
+    img {
+        width: 150px;
+        height: 75px;
+        object-fit: contain;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.05);
+    }
+
+    .nav {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .nav a {
+        font-size: 18px;
+        color: #014728;
+        text-decoration: none;
+        font-weight: 800;
+    }
+
+    .nav a:hover {
+        color: #907427;
+        transition: color 0.3s ease;
+    }
+
+    .start-button {
+        background-color: #907427;
+        color: white !important;
+        font-size: 18px;
+        padding: 10px 35px 13px 35px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .start-button:hover {
+        background-color: #014728;
+    }
+
+    .burger {
+        font-size: 30px;
+        color: #014728;
+        cursor: pointer;
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        padding: 20px;
+        border-top: 1px solid #ccc;
+    }
+
+    .mobile-menu a {
+        margin: 10px 0;
+        font-size: 18px;
+        color: #014728;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .mobile-menu a:hover {
+        color: #907427;
+    }
+
+    .mobile-menu .start-button{
+        text-align: center;
+    }
+    .mobile-menu.open {
+        display: flex;
+    }
+
+    @media (max-width: 1080px) {
+        .desktop-nav {
+            display: none;
+        }
+
+        .burger {
+            display: block;
+        }
+    }
+
+</style>

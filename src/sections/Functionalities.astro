@@ -1,0 +1,543 @@
+---
+
+---
+<section class="functionalities" id="functionalities">
+    <div class="functionalities-content">
+        <div class="functionalities-text">
+            <h1 class="typing-title-4">Funcionamiento</h1>
+            <p>Tecnología que monitorea, detecta y actúa por ti</p>
+        </div>
+    </div>
+    <div class="functionalities-container">
+        <h1>Sensores y Actuadores AgroSense</h1>
+        <p>
+            NutriControl opera con sensores y actuadores AgroSense que registran en tiempo real la humedad, temperatura, radiación solar y más, para un control total de tus cultivos.
+    </div>
+    <div class="functionalities-graph">
+        <div class="graph">
+            <div class="row">
+                <div>
+                    Sensor de pH
+                </div>
+                <div data-hover-text="Mide el nivel de pH en soluciones">
+                    <img src="/devices/device-01.png" alt="Sensor de pH" />
+                </div>
+                <div>
+                    Sensor de Humedad
+                </div>
+                <div data-hover-text="Detecta niveles de humedad del suelo">
+                    <img src="/devices/device-02.png" alt="Sensor de Humedad" />
+                </div>
+            </div>
+            <div class="row">
+                <div data-hover-text="Activa el sistema de riego automáticamente">
+                    <img src="/devices/device-03.png" alt="Actuador de Riego" />
+                </div>
+                <div>
+                    Actuador de Riego
+                </div>
+                <div data-hover-text="Mide la cantidad de lluvia caída">
+                    <img src="/devices/device-04.png" alt="Pluviómetro" />
+                </div>
+                <div>
+                    Pluviómetro
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    Sensor de Temperatura
+                </div>
+                <div data-hover-text="Mide la temperatura del ambiente">
+                    <img src="/devices/device-05.png" alt="Sensor de Temperatura" />
+                </div>
+                <div data-hover-text="Captura radiación solar recibida">
+                    <img src="/devices/device-06.png" alt="Sensor Solar" />
+                </div>
+                <div>
+                    Sensor Solar
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="functionalities-content">
+        <div class="data">
+            <div class="functionalities-text statistics">
+                <h1 data-target="30">0%</h1>
+                <p>Menos uso de fertilizantes</p>
+            </div>
+            <div class="functionalities-text statistics">
+                <h1 data-target="40">0%</h1>
+                <p>Más eficiencia en las decisiones </p>
+            </div>
+            <div class="functionalities-text statistics">
+                <h1 data-target="25">0%</h1>
+                <p>Mayor rendimiento de cultivo</p>
+            </div>
+            <div class="functionalities-text statistics">
+                <h1 data-target="60">0%</h1>
+                <p>Mejora en la precisión del riego</p>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function animateValue(el, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            el.innerText = Math.floor(progress * (end - start) + start) + "%";
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function initAnimation() {
+        const counters = document.querySelectorAll(".statistics h1");
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute("data-target"));
+                    animateValue(el, 0, target, 1000);
+                    observer.unobserve(el); // Solo animar una vez
+                }
+            });
+        }, { threshold: 0.6 }); // Se activa cuando 60% del elemento es visible
+
+        counters.forEach(counter => observer.observe(counter));
+    }
+
+    document.addEventListener("DOMContentLoaded", initAnimation);
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const typingTitles = document.querySelectorAll('.typing-title-4');
+        const animatedElements = document.querySelectorAll('.animate-fade, .animate-up');
+
+        const animatedObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 400); // Escalonado
+                    animatedObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.4
+        });
+
+        animatedElements.forEach(el => animatedObserver.observe(el));
+
+        typingTitles.forEach(title => {
+            const typingObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !title.classList.contains('animate')) {
+                        title.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            typingObserver.observe(title);
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const typingTitle = document.querySelector('.typing-title-4');
+        const items = document.querySelectorAll(".feature-item, .our-proposal-image");
+
+        const generalObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add("show");
+                    }, index * 250);
+                    generalObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        items.forEach(item => generalObserver.observe(item));
+
+        const typingObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Solo añade la clase si aún no tiene la animación
+                    if (!typingTitle.classList.contains('animate')) {
+                        typingTitle.classList.add('animate');
+                    }
+                    observer.disconnect();
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        typingObserver.observe(typingTitle);
+    });
+
+
+</script>
+<style>
+    h1{
+        font-size: 40px;
+        margin-top: 0px;
+    }
+    p{
+        margin-top: 0px;
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 300px) {
+        h1 {
+            font-size: 24px!important;
+        }
+        p {
+            font-size: 14px!important;
+        }
+    }
+
+    .typing-title-4 {
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        .typing-title-4.animate {
+            animation: typing-4 1.5s steps(16, end) forwards, blink 0.45s step-end infinite;
+            white-space: nowrap;
+            border-right: 3px solid #fff;
+        }
+    }
+
+    @keyframes typing-4 {
+        from { width: 0ch; }
+        to { width: 14ch; }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent; }
+    }
+
+    .functionalities {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        scroll-margin-top: 60px;
+    }
+
+    .functionalities-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #014728;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+
+
+
+    .data {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+        max-width: 1300px;
+    }
+
+    .statistics {
+        flex: 1 1 20%;
+        min-width: 200px;
+        max-width: 250px;
+        text-align: center;
+        color: white;
+    }
+
+    @media screen and (max-width: 1100px) {
+        .statistics {
+            flex: 1 1 40%; /* Muestra 2 por fila */
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .statistics {
+            flex: 1 1 100%; /* Muestra 1 por fila */
+        }
+    }
+
+
+
+
+
+    .statistics h1{
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    .statistics p{
+        font-size: 16px;
+    }
+    .functionalities-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1300px;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+
+    .functionalities-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1300px;
+        text-align: center;
+        padding: 80px 80px 30px 80px;
+    }
+    .functionalities-container h1{
+        color: #014728;
+    }
+    .functionalities-container p{
+        width: 80%;
+    }
+
+
+    @media screen and (max-width: 520px) {
+        h1{
+            font-size: 30px;
+        }
+        h2{
+            font-size: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+        .functionalities-container{
+            padding: 60px 20px 30px 20px;
+        }
+        .functionalities-container p{
+            width: 100%;
+        }
+    }
+
+    .functionalities-graph {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 30px;
+        padding-bottom: 70px;
+    }
+
+    .graph {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .row > div {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.9rem;
+        overflow: hidden;
+    }
+
+    .row > div img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        cursor: pointer;
+    }
+
+
+    /* Contenedor relativo para las imágenes */
+    .row > div:has(img) {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Oscurecimiento de la imagen al hacer hover */
+    .row > div:has(img):hover img {
+        filter: brightness(0.4);
+    }
+
+    /* Texto superpuesto */
+    .row > div:has(img)::after {
+        content: attr(data-hover-text);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 20px;
+        opacity: 0;
+        transition: opacity 0.43s ease;
+        text-align: center;
+        padding: 0 0.5rem;
+        pointer-events: none;
+    }
+
+    /* Mostrar texto al hacer hover */
+    .row > div:has(img):hover::after {
+        opacity: 1;
+    }
+
+    /* Colores personalizados */
+    .row:nth-child(1) > div:nth-child(1),
+    .row:nth-child(2) > div:nth-child(4),
+    .row:nth-child(3) > div:nth-child(1) {
+        background-color: #014728;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        padding: 5px;
+    }
+
+    .row:nth-child(1) > div:nth-child(3),
+    .row:nth-child(2) > div:nth-child(2),
+    .row:nth-child(3) > div:nth-child(4) {
+        background-color: #907427;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        padding: 5px;
+    }
+
+    @media (max-width: 992px) {
+        .row {
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+        .row:nth-child(1) > div:nth-child(1),
+        .row:nth-child(2) > div:nth-child(4),
+        .row:nth-child(3) > div:nth-child(1) {
+            font-size: 35px;
+        }
+        .row:nth-child(1) > div:nth-child(3),
+        .row:nth-child(2) > div:nth-child(2),
+        .row:nth-child(3) > div:nth-child(4) {
+            font-size: 35px;
+        }
+
+        .row > div:has(img)::after {
+            font-size: 25px;
+        }
+    }
+
+    @media (max-width: 570px){
+        .row:nth-child(1) > div:nth-child(1),
+        .row:nth-child(2) > div:nth-child(4),
+        .row:nth-child(3) > div:nth-child(1) {
+            font-size: 40px;
+        }
+        .row:nth-child(1) > div:nth-child(3),
+        .row:nth-child(2) > div:nth-child(2),
+        .row:nth-child(3) > div:nth-child(4) {
+            font-size: 40px;
+        }
+        .row > div:has(img)::after {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .row {
+            grid-template-columns: 1fr;
+        }
+
+        .row > div {
+            display: none;
+        }
+
+        .row:nth-child(1) > div:nth-child(-n+4),
+        .row:nth-child(2) > div:nth-child(-n+2) {
+            display: flex;
+        }
+
+        .graph::after {
+            content: "Y más";
+            background-color: #818181;
+            color: white;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            grid-column: span 1;
+            font-size: 40px;
+        }
+    }
+
+    @media (max-width: 348px) {
+        .functionalities-graph {
+            padding: 10px;
+            padding-bottom: 60px;
+        }
+        .row:nth-child(1) > div:nth-child(1),
+        .row:nth-child(2) > div:nth-child(4),
+        .row:nth-child(3) > div:nth-child(1) {
+            font-size: 30px;
+        }
+        .row:nth-child(1) > div:nth-child(3),
+        .row:nth-child(2) > div:nth-child(2),
+        .row:nth-child(3) > div:nth-child(4) {
+            font-size: 30px;
+        }
+        .graph::after {
+            font-size: 30px;
+        }
+        .row > div:has(img)::after {
+            font-size: 20px;
+        }
+    }
+    @media (max-width: 268px) {
+        .functionalities-graph {
+            padding: 10px;
+        }
+        .row:nth-child(1) > div:nth-child(1),
+        .row:nth-child(2) > div:nth-child(4),
+        .row:nth-child(3) > div:nth-child(1) {
+            font-size: 20px;
+        }
+        .row:nth-child(1) > div:nth-child(3),
+        .row:nth-child(2) > div:nth-child(2),
+        .row:nth-child(3) > div:nth-child(4) {
+            font-size: 20px;
+        }
+        .graph::after {
+            font-size: 20px;
+        }
+        .row > div:has(img)::after {
+            font-size: 16px;
+        }
+    }
+
+
+</style>

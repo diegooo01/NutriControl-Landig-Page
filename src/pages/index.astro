@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Toolbar from '../sections/components/Toolbar.astro';
+import Hero from "../sections/Hero.astro";
+import Footer from "../sections/components/Footer.astro";
+import Proposal from "../sections/Proposal.astro";
+import AboutUs from "../sections/AboutUs.astro";
+import Memberships from "../sections/Memberships.astro";
+import Functionalities from "../sections/Functionalities.astro";
+---
+
+<Layout>
+    <Toolbar></Toolbar>
+    <main>
+        <Hero></Hero>
+        <Proposal></Proposal>
+        <AboutUs></AboutUs>
+        <Functionalities></Functionalities>
+        <Memberships></Memberships>
+        <Footer></Footer>
+    </main>
+</Layout>
+<style>
+    main{
+        margin-top: 80px;
+    }
+</style>

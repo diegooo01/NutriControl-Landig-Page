@@ -1,0 +1,322 @@
+---
+---
+<footer class="footer">
+    <div class="container">
+        <div class="top-row">
+            <div class="brand">
+                <img src="/logo/nutricontrol-logo-02.png" alt="NutriControl" width="150" />
+                <p>No te olvides seguirnos en nuestras redes sociales:</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/feed/" target="_blank" class="circle-icon"><img src="/footer/linkedin-logo.png" alt="LinkedIn" /></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="circle-icon"><img src="/footer/instagram-logo.png" alt="Instagram" /></a>
+                    <a href="https://www.youtube.com/" target="_blank" class="circle-icon"><img src="/footer/youtube-logo.png" alt="YouTube" /></a>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <p class="subtitle">Información de Contacto</p>
+                <div class="info-item"><img src="/footer/celphone-icon.png" width="30" /> 923 123 345</div>
+                <div class="info-item email"><img src="/footer/email-icon.png" width="30" /> support@nutricontrol.com</div>
+                <div class="info-item"><img src="/footer/location-icon.png" width="30" /> Los Helechos 123, Surco</div>
+            </div>
+
+            <div class="discover">
+                <p class="subtitle">Descubre NutriControl</p>
+                <a href="#proposal">Propuesta</a>
+                <a href="#about-us">Sobre Nosotros</a>
+                <a href="#functionalities">Funcionamiento</a>
+                <a href="#memberships">Membresías</a>
+            </div>
+
+            <div class="contact-form">
+                <p class="subtitle">Contáctanos</p>
+                <form
+                        id="contact"
+                        action="https://formspree.io/f/xdkgzglj"
+                        method="POST"
+                >
+                    <input class="form-input" type="email" name="email" placeholder="Correo electrónico*" required />
+                    <textarea class="form-textarea" name="message" rows="4" placeholder="Mensaje*" required></textarea>
+                    <button class="form-button" type="submit">Envíar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bottom-row">
+            Todos los derechos reservados. © 2025. AgroSense.
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('#contact');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            await fetch(form.action, {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: formData
+            });
+            Swal.fire({
+                title: 'Enviado',
+                text: 'Tu mensaje fue enviado correctamente.',
+                icon: 'success'
+            });
+            form.reset();
+        });
+    });
+</script>
+
+
+<style>
+    .footer {
+        background-color: #014728;
+        color: white;
+        font-size: 16px;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    .subtitle{
+        font-weight: 600;
+    }
+
+    .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .top-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+        "brand contact-info discover contact-form";
+        gap: 2rem;
+        flex-wrap: wrap;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+
+    .brand{
+        grid-area: brand;
+    }
+
+    .contact-info{
+        grid-area: contact-info;
+    }
+
+    .discover {
+        grid-area: discover;
+    }
+
+    .contact-form {
+        grid-area: contact-form;
+    }
+
+
+    .brand,
+    .contact-info,
+    .discover{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contact-form{
+        width: 100%;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.8rem;
+    }
+
+    .circle-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.43s ease;
+    }
+
+    .circle-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .circle-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        padding: 0.75rem;
+        border: 1px solid white;
+        border-radius: 8px;
+        background: #fff;
+        color: #014728;
+        font-size: 16px;
+        font-family: "Kaisei Tokumin", serif;
+        outline: none;
+        resize: none;
+    }
+
+    .form-input{
+        margin-bottom: 5px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: #014728;
+        font-family: "Kaisei Tokumin", serif;
+    }
+
+    .form-button {
+        margin-top: 5px;
+        border: 1.5px solid white;
+        background: transparent;
+        width: 100%;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        font-family: "Kaisei Tokumin", serif;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 0.25rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .form-button:hover {
+        background-color: white;
+        color: #014728;
+    }
+
+    .bottom-row {
+        text-align: center;
+        font-size: 16px;
+        padding-bottom: 30px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #d8ceb0;
+    }
+
+    @media (max-width: 1130px) {
+        .top-row {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+            "brand brand"
+            "contact-info discover"
+            "contact-form contact-form";
+        }
+
+        .brand{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .contact-info, .discover{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        .contact-form p {
+            padding-bottom: 5px;
+        }
+
+        .form-input, .form-textarea{
+            margin-bottom: 15px;
+        }
+
+    }
+
+    @media (max-width: 710px) {
+        .top-row {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+            "brand"
+            "contact-info"
+            "discover"
+            "contact-form";
+        }
+        .contact-info{
+            padding-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .footer {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .footer {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .form-input,
+        .form-textarea {
+            font-size: 13px;
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            font-size: 13px;
+        }
+
+    }
+
+    @media (max-width: 295px) {
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .email{
+            display: none;
+        }
+    }
+</style>
+

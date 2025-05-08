@@ -1,0 +1,277 @@
+---
+const slidesData = [
+    {
+        image: "/hero-section/hero-01.png",
+        title: "Experimenta las nuevas formas de hacer crecer tus cultivos",
+        description: "Con NutriControl llega al siguiente nivel tecnológico",
+        buttonText: "Ver más"
+    },
+    {
+        image: "/hero-section/hero-02.png",
+        title: "Aumenta tu producción con un sistema inteligente",
+        description: "Lleva tu rendimiento al máximo con soluciones precisas y automáticas",
+        buttonText: "Empezar"
+    },
+    {
+        image: "/hero-section/hero-03.png",
+        title: "Monitorea tus cultivos en tiempo real",
+        description: "Accede a datos precisos y toma decisiones desde cualquier lugar",
+        buttonText: "Descubrir"
+    }
+];
+---
+
+<div class="hero-container" id="hero-section">
+    {slidesData.map((slide, index) => (
+            <div class="slide" style={`background-image: url(${slide.image});`} data-index={index}>
+                <div class="hero-content">
+                    <div class="hero-inner">
+                        <h1>{slide.title}</h1>
+                        <p>{slide.description}</p>
+                        <a>{slide.buttonText}</a>
+                    </div>
+                </div>
+            </div>
+    ))}
+
+    <div class="carousel-controls">
+        <div class="carousel-controls-inner">
+            <button class="arrow-btn" id="prevBtn">&#10094;</button>
+            <div class="indicators">
+                {slidesData.map((_, index) => (
+                        <div class="dot" data-index={index}></div>
+                ))}
+            </div>
+            <button class="arrow-btn" id="nextBtn">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const interval = 30000;
+    let timer;
+
+    function showSlide(index) {
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+
+        currentIndex = index;
+    }
+
+
+    function nextSlide() {
+        const totalSlides = document.querySelectorAll(".slide").length;
+        showSlide((currentIndex + 1) % totalSlides);
+    }
+
+    function prevSlide() {
+        const totalSlides = document.querySelectorAll(".slide").length;
+        showSlide((currentIndex - 1 + totalSlides) % totalSlides);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(nextSlide, interval);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const dots = document.querySelectorAll(".dot");
+
+        prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                const index = parseInt(dot.getAttribute("data-index"));
+                showSlide(index);
+                resetTimer();
+            });
+        });
+
+        showSlide(0);
+        timer = setInterval(nextSlide, interval);
+    });
+</script>
+
+
+<style>
+    .hero-container {
+        position: relative;
+        width: 100%;
+        min-height: 90vh;
+        overflow: hidden;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    @media screen and (max-width: 600px) {
+        .hero-container {
+            min-height: 78vh; /* o prueba con 50vh o 70vh según se vea mejor */
+        }
+
+        .slide {
+            height: 78vh; /* Asegura que cada slide tenga menor altura */
+        }
+    }
+
+    .hero-inner {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 1rem;
+        color: white;
+        pointer-events: all;
+    }
+
+    .hero-inner h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .hero-inner p {
+        font-size: 20px;
+        margin-bottom: 2.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        .hero-inner h1 {
+            font-size: 30px;
+        }
+        .hero-inner p {
+            font-size: 16px;
+        }
+    }
+    @media screen and (max-width: 380px) {
+        .hero-inner h1 {
+            font-size: 24px!important;
+        }
+        .hero-inner p {
+            font-size: 14px!important;
+        }
+    }
+
+    .hero-inner a {
+        background-color: #014728;
+        color: white !important;
+        font-size: 18px;
+        padding: 10px 35px 13px 35px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-weight: 800;
+    }
+
+    .hero-inner a:hover{
+        background-color: #907427;
+    }
+
+    .carousel-controls {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+        padding-bottom: 40px;
+    }
+
+    .carousel-controls-inner {
+        max-width: 1300px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        pointer-events: all;
+    }
+
+    .arrow-btn {
+        background-color: #907427;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .indicators {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #907427;
+        border-radius: 50%;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+    .dot.active {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 768px) {
+        .hero-inner h1 {
+            font-size: 2rem;
+        }
+
+        .hero-inner p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
