@@ -310,18 +310,18 @@
         cursor: pointer;
     }
 
-    /* Capa para oscurecer solo la imagen de fondo */
+    /* Aqui */
     .feature-image::before {
         content: "";
         position: absolute;
         inset: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* más opaco para que se note */
+        background-color: rgba(0, 0, 0, 0.6); /* más oscuro aún */
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.4s ease;
         z-index: 0;
+        border-radius: 50%;
     }
 
-    /* Mostrar la opacidad sobre la imagen al hacer hover */
     .feature-image:hover::before {
         opacity: 1;
     }
@@ -330,18 +330,18 @@
         position: absolute;
         inset: 0;
         color: white;
-        font-size: 18px;
+        font-size: 22px; /* Aumentado como en .row > div:has(img)::after */
         display: flex;
         justify-content: center;
         align-items: center;
         opacity: 0;
-        padding: 10px;
+        padding: 0 1rem;
         text-align: center;
-        transition: opacity 0.3s ease;
-        z-index: 1; /* Encima del fondo oscuro */
+        transition: opacity 0.4s ease;
+        z-index: 1;
+        pointer-events: none; /* Phasta el siguiente*/
     }
 
-    /* Mostrar el texto al hacer hover */
     .feature-image:hover .feature-hover-text {
         opacity: 1;
     }
