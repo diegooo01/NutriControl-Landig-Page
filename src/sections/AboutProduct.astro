@@ -1,0 +1,96 @@
+---
+
+---
+<section class="about-product" >
+    <div class="about-product-content">
+        <div class="about-product-text">
+            <h1>Conoce un poco más de Nutricontrol</h1>
+            <p>¡NutriControl ya se encuentra disponible! Visualiza nuestro video About The Product <br> ya publicado en todas nuestras redes sociales</p>
+            <br>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dmfyM0Ajn0g?si=1m-_CXxIikCPIADY&amp;start=1"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    h1{
+        font-size: 40px;
+        margin-top: 0px;
+    }
+    p{
+        margin-top: 0px;
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 530px) {
+        h1{
+            font-size: 30px;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 300px) {
+        h1 {
+            font-size: 24px!important;
+        }
+        p {
+            font-size: 14px!important;
+        }
+    }
+
+    .about-product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        scroll-margin-top: 60px;
+    }
+
+    .about-product-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #907427;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+
+    .about-product-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1300px;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-top: 25px;
+        height: 0;
+        width: 100%;
+        max-width: 760px; /* Tamaño máximo como el original */
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>

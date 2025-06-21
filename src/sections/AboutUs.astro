@@ -36,6 +36,21 @@
             </div>
         </div>
     </div>
+    <div class="separator"></div>
+    <div class="about-team-content">
+        <div class="about-team-text">
+            <h1>Conoce al equipo de Agrosense</h1>
+            <p>Conoce un poco más acerca de cada uno de los integrantes y su desempeño en NutriControl</p>
+            <br>
+            <div class="video-wrapper animate-up">
+                <iframe src="https://www.youtube.com/embed/dmfyM0Ajn0g?si=1m-_CXxIikCPIADY&amp;start=1"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+        <br>
+    </div>
 </section>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -115,6 +130,52 @@
 
 </script>
 <style>
+    .about-team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        scroll-margin-top: 60px;
+        background-color: transparent; /* sin fondo */
+    }
+
+    .about-team-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .about-team-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1300px;
+        color: black; /* texto oscuro porque no hay fondo */
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-top: 25px;
+        height: 0;
+        width: 100%;
+        max-width: 760px; /* Tamaño máximo como el original */
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
     .animate-up {
         opacity: 0;
